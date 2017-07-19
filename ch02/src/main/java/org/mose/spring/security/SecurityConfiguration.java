@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
-                .and().formLogin().loginPage("/login.jsp").loginProcessingUrl("/login").permitAll()
+                .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
                 .and().csrf().disable();
     }
 }
