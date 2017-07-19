@@ -8,8 +8,8 @@
     <modules>
         <module>ch01</module>
     </modules>
-    <name>spring.security Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <name>spring.security learning</name>
+    <url>https://github.com/wexgundam/spring.security</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
