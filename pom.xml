@@ -7,6 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ch01</module>
+        <module>ch02</module>
+        <!--<module>ch02</module>-->
     </modules>
     <name>spring.security learning</name>
     <url>https://github.com/wexgundam/spring.security</url>
@@ -82,7 +84,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${springboot.version}</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
 
     <dependencyManagement>

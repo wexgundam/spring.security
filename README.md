@@ -1,4 +1,4 @@
-# spring_security 开启基于Spring boot的Spring Security学习历程
+# 开启基于Spring boot的Spring Security学习历程
 ch01：创建最简单的Spring Security配置 http://www.jianshu.com/p/4888856207b2<br>
 ch02：配置自定义用户界面<br>
 ch03：配置Remember Me功能<br>
