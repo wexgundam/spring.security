@@ -1,8 +1,17 @@
 package org.mose.spring.security;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.security.access.vote.AuthenticatedVoter;
+import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Description:Spring Security的java configuration
@@ -24,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -35,6 +45,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
                 .and().rememberMe()
+//                .and().authorizeRequests().accessDecisionManager(unaninmousBased())//修改为全票通过的授权方式
                 .and().csrf().disable();
+    }
+
+    /**
+     * Description:声明全票通过授权方式
+     *
+     * @param
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/7/20 10:13
+     */
+    @Bean
+    public AccessDecisionManager unaninmousBased() {
+        RoleVoter roleVoter = new RoleVoter();
+        AuthenticatedVoter authenticatedVoter = new AuthenticatedVoter();
+        List<AccessDecisionVoter<? extends Object>> voters = new ArrayList<>();
+        voters.add(roleVoter);
+        voters.add(authenticatedVoter);
+        UnanimousBased unanimousBased = new UnanimousBased(voters);
+        return unanimousBased;
     }
 }

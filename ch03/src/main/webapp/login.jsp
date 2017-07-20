@@ -86,7 +86,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         You have been logged out.
                     </div>
                 </c:if>
-                <p>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
@@ -481,6 +480,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN COPYRIGHT -->
         <div class="copyright"> 2014 &copy; Metronic - Admin Dashboard Template.</div>
         <!-- END COPYRIGHT -->
+
         <!--[if lt IE 9]>
         <script src="assets/global/plugins/respond.min.js"></script>
         <script src="assets/global/plugins/excanvas.min.js"></script>
