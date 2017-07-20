@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * Description：配置Spring Security
-     * 1.开启对任何地址（"/**"）的访问控制，要求必须句别"ROLE_USER"的角色
+     * 1.开启对任何地址（"/**"）的访问控制，要求必须具备"ROLE_USER"的角色
      * 2.开启默认form表单形式的用户登入，访问地址为"/login"，登录成功后自动跳转到用户前一次的访问地址
      * 3.关闭csrf限制，该功能以后再讲，默认为开启状态<br>
      *

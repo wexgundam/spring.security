@@ -2,7 +2,7 @@
 ch01：创建最简单的Spring Security配置 http://www.jianshu.com/p/4888856207b2<br>
 ch02：配置自定义用户界面 http://www.jianshu.com/p/0b56984059ba<br>
 ch03：配置Remember Me功能<br>
-ch04：限定Ip，强化Remember Me功能<br>
+ch04：限定Ip，增加密码修改功能<br>
 ch05：增加修改密码功能<br>
 ch06：自定义用户信息获取服务<br>
 ch07：将用户信息存储到数据库<br>
