@@ -5,7 +5,7 @@ ch03：配置Remember Me功能<br>
 ch04：限定Ip，增加密码修改功能<br>
 ch05：通过数据库获取用户信息<br>
 ch06：用户密码加密技术<br>
-ch07：配置GBAC（基于组的访问控制），提高用户与权限灵活性<br>
-ch08：将Remember Me Token存储到数据库<br>
+ch07：将Remember Me Token存储到数据库<br>
+ch08：配置GBAC（基于组的访问控制），提高用户与权限灵活性<br>
 ch09：整合遗留系统的用户管理<br>
 ch10：启用HTTPS<br>
