@@ -39,7 +39,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -56,11 +55,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Description:配置认证细节，获取默认创建的UserDetailsService，并发布为Spring Bean
+     * Description:配置认证细节
      *
      * @param auth
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
@@ -72,23 +70,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource);
     }
 
+    /**
+     * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
+     *
+     * @param auth
+     * @return
+     */
     @Bean
-//    @DependsOn("authenticationManager")
     @Autowired
-    public UserDetailsService userDetailsService(AuthenticationManagerBuilder builder) {
-//        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
-//        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
-//            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
-//            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
-//            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
-//        }
-//        return userDetailsService;
-        return builder.getDefaultUserDetailsService();
-    }
-
-    @Autowired
-    public void test(UserDetailsService service) {
-        System.out.println(service);
+    public UserDetailsService userDetailsService(AuthenticationManagerBuilder auth) {
+        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
+        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
+            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
+            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
+            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
+        }
+        return userDetailsService;
     }
 
     /**
