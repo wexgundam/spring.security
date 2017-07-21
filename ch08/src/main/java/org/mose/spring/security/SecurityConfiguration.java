@@ -2,7 +2,7 @@ package org.mose.spring.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -64,20 +64,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
-    @Bean
     @Autowired
-    public UserDetailsService configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
-        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
-        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
-            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
-            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
-            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
-        }
-        return userDetailsService;
+    }
+
+    @Bean
+//    @DependsOn("authenticationManager")
+    @Autowired
+    public UserDetailsService userDetailsService(AuthenticationManagerBuilder builder) {
+//        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
+//        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
+//            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
+//            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
+//            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
+//        }
+//        return userDetailsService;
+        return builder.getDefaultUserDetailsService();
+    }
+
+    @Autowired
+    public void test(UserDetailsService service) {
+        System.out.println(service);
     }
 
     /**
