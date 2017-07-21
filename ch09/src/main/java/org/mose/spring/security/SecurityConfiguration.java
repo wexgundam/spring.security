@@ -6,7 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -63,27 +65,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .jdbcAuthentication()
+        auth.userDetailsService(userDetailsService())//配置自定义UserDetails
+                .and().jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
     }
 
     /**
-     * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
+     * 自定义UserDetailsService，并发布为Spring Bean
      *
-     * @param auth
      * @return
      */
     @Bean
-    @Autowired
-    public UserDetailsService userDetailsService(AuthenticationManagerBuilder auth) {
-        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
-        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
-            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
-            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
-            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
-        }
+    public UserDetailsService userDetailsService() {
+        UserDetailsService userDetailsService = username -> null;
         return userDetailsService;
     }
 
