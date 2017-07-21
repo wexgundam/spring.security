@@ -2,11 +2,14 @@ package org.mose.spring.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -36,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -46,16 +50,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
-                .and().rememberMe().tokenRepository(persistentTokenRepository())//自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
+                .and().rememberMe().tokenRepository(
+                persistentTokenRepository())//自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
                 .and().csrf().disable();
     }
 
+    /**
+     * Description:配置认证细节，获取默认创建的UserDetailsService，并发布为Spring Bean
+     *
+     * @param auth
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/7/21 17:04
+     */
+    @Bean
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public UserDetailsService configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
+        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
+        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
+            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
+            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
+            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
+        }
+        return userDetailsService;
     }
 
     /**
