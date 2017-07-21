@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
-                .and().rememberMe().tokenRepository(persistentTokenRepository())
+                .and().rememberMe().tokenRepository(persistentTokenRepository())//启用PersistentTokenBasedRememberMeServices
                 .and().csrf().disable();
     }
 
