@@ -7,5 +7,5 @@ ch05：通过数据库获取用户信息 http://www.jianshu.com/p/37bedcd1e3aa<b
 ch06：用户密码加密技术 http://www.jianshu.com/p/da3da5feafcc<br>
 ch07：将Remember Me Token存储到数据库 http://www.jianshu.com/p/1a91339a749a<br>
 ch08：配置GBAC（基于组的访问控制），提高用户与权限灵活性 http://www.jianshu.com/p/17de98f1db7c<br>
-ch09：自定义UserDetails，整合遗留系统的用户管理<br>
+ch09：自定义UserDetailsService，整合遗留系统的用户管理<br>
 ch10：启用HTTPS<br>

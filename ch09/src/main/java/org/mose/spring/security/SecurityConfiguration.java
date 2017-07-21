@@ -2,7 +2,6 @@ package org.mose.spring.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,7 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -56,21 +54,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Description:配置认证细节，获取默认创建的UserDetailsService，并发布为Spring Bean
+     * Description:配置认证细节
      *
      * @param auth
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
-    @Bean
     @Autowired
-    public UserDetailsService configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
+    }
+
+    /**
+     * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
+     *
+     * @param auth
+     * @return
+     */
+    @Bean
+    @Autowired
+    public UserDetailsService userDetailsService(AuthenticationManagerBuilder auth) {
         UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
         if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
             JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
