@@ -9,4 +9,5 @@ ch07：将Remember Me Token存储到数据库 http://www.jianshu.com/p/1a91339a7
 ch08：配置GBAC（基于组的访问控制），提高用户与权限灵活性 http://www.jianshu.com/p/17de98f1db7c<br>
 ch09：自定义UserDetailsService，整合遗留系统的用户管理 http://www.jianshu.com/p/5b5f15425419<br>
 ch10：启用HTTPS加强传输通道安全性 --尚未研究 http://www.jianshu.com/p/981b90aa2ddf<br>
-ch11: <br>
+ch11: 精确授权——页面级权限控制 <br>
+ch11: 精确授权——控制层权限控制 <br>
