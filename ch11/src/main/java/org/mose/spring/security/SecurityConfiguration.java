@@ -74,6 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
     }
+
 //    https://www.google.com.ph/search?newwindow=1&biw=1599&bih=730&q=spring+security+protect-pointcut+java&oq=spring+security+protect-pointcut+java&gs_l=serp.3...23593.30699.0.32710.14.14.0.0.0.0.340.1863.2-3j3.6.0....0...1.1.64.serp..8.5.1522...0i19k1j0i30i19k1j0i8i30i19k1j0i30k1.kAuCbpzgwrI
 
     /**
