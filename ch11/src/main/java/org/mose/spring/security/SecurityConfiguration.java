@@ -3,6 +3,11 @@ package org.mose.spring.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
+import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
+import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +20,11 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Description:Spring Security的java configuration
@@ -41,7 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -63,7 +72,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param auth
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
@@ -74,8 +82,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
     }
-
-//    https://www.google.com.ph/search?newwindow=1&biw=1599&bih=730&q=spring+security+protect-pointcut+java&oq=spring+security+protect-pointcut+java&gs_l=serp.3...23593.30699.0.32710.14.14.0.0.0.0.340.1863.2-3j3.6.0....0...1.1.64.serp..8.5.1522...0i19k1j0i30i19k1j0i8i30i19k1j0i30k1.kAuCbpzgwrI
 
     /**
      * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
@@ -116,4 +122,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         tokenRepository.setDataSource(dataSource);
         return tokenRepository;
     }
+
+
 }

@@ -18,6 +18,9 @@
             <h1>通过Spring EL控制访问：</h1>
             <c:out value="hasRole('ROLE_ADMIN') and fullyAuthenticated" />
         </sec:authorize>
+        <form action="/user/test" method="post">
+            <input type="submit" value="Test">
+        </form>
     </div>
 </body>
 </html>

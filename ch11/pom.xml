@@ -47,6 +47,14 @@
         </dependency>
         <!-- End Spring Security -->
 
+        <!-- Begin AspectJ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- End AspectJ -->
+
+
         <!-- Begin Database -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

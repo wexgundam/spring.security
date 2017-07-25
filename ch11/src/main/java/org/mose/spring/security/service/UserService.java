@@ -1,6 +1,7 @@
 package org.mose.spring.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
@@ -21,5 +22,10 @@ public class UserService {
         System.out.println("---------------------------");
         System.out.println(userDetailsService.getClass());
         System.out.println("---------------------------");
+    }
+
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void doTest() {
+        System.out.println("do test");
     }
 }
