@@ -51,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/**").access("hasIpAddress('192.168.109.136') and hasRole('USER')")//限IP限角色
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
+                .and().logout().permitAll()
                 .and().rememberMe()
                 .and().csrf().disable();
     }

@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
+                .and().logout().permitAll()
                 .and().rememberMe()
 //                .and().authorizeRequests().accessDecisionManager(unaninmousBased())//修改为全票通过的授权方式
                 .and().csrf().disable();

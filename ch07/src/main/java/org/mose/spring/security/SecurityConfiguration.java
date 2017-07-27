@@ -36,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -46,7 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
-                .and().rememberMe().tokenRepository(persistentTokenRepository())//自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
+                .and().logout().permitAll()
+                .and().rememberMe().tokenRepository(
+                persistentTokenRepository()) //自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
                 .and().csrf().disable();
     }
 
