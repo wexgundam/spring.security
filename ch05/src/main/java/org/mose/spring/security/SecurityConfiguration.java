@@ -42,7 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
                 .and().logout().permitAll()
                 .and().rememberMe()
-                .and().sessionManagement().maximumSessions(1).and()
                 .and().csrf().disable();
     }
 
