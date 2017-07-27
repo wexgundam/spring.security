@@ -33,7 +33,7 @@ import java.util.Map;
  * @Date: 2017/7/19 13:47
  */
 @EnableWebSecurity
-public class AuthenticationSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
@@ -61,6 +61,7 @@ public class AuthenticationSecurityConfiguration extends WebSecurityConfigurerAd
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
+                .and().logout().permitAll()
                 .and().rememberMe().tokenRepository(
                 persistentTokenRepository())//自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
                 .and().csrf().disable();

@@ -1,6 +1,5 @@
 package org.mose.spring.security;
 
-import org.aspectj.lang.annotation.Pointcut;
 import org.mose.spring.security.service.UserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.SecurityConfig;
@@ -16,7 +15,7 @@ import org.springframework.security.config.annotation.method.configuration.Globa
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
+public class SecurityMethodConfiguration extends GlobalMethodSecurityConfiguration {
     /**
      * 当前版本主要使用了ProtectPointcutPostProcessor实现Aop AspectJ的表达式方式的权限控制
      * 其原理是Spring没创建一个bean都要通过一组Aop的遍历，如果符合Aop表达式，则将这个bean的方法
