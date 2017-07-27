@@ -11,3 +11,6 @@ ch09：自定义UserDetailsService，整合遗留系统的用户管理 http://ww
 ch10：启用HTTPS加强传输通道安全性 --尚未研究 http://www.jianshu.com/p/981b90aa2ddf<br>
 ch11: 精确授权——页面级权限控制 <br>
 ch11: 精确授权——控制层权限控制 <br>
+自定义filter
+管理session
+显示活跃用户数
