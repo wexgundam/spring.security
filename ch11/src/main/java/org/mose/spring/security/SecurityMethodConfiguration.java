@@ -1,12 +1,23 @@
 package org.mose.spring.security;
 
 import org.mose.spring.security.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource;
+import org.springframework.security.access.expression.method.ExpressionBasedAnnotationAttributeFactory;
+import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
+import org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description:
@@ -32,7 +43,7 @@ public class SecurityMethodConfiguration extends GlobalMethodSecurityConfigurati
     @Override
     protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
         MapBasedMethodSecurityMetadataSource metadataSource = new MapBasedMethodSecurityMetadataSource();
-        metadataSource.addSecureMethod(UserService.class, "*", SecurityConfig.createList("ROLE_ADMIN"));
+        metadataSource.addSecureMethod(UserService.class, "javaConfiguredMethod", SecurityConfig.createList("ROLE_ADMIN"));
         return metadataSource;
     }
 }

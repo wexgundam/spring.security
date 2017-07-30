@@ -122,6 +122,4 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
         tokenRepository.setDataSource(dataSource);
         return tokenRepository;
     }
-
-
 }
