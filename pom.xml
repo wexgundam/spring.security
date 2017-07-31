@@ -17,6 +17,7 @@
         <module>ch09</module>
         <module>ch10</module>
         <module>ch11</module>
+        <module>ch12</module>
     </modules>
     <name>spring.security learning</name>
     <url>https://github.com/wexgundam/spring.security</url>

@@ -10,8 +10,8 @@ ch08：配置GBAC（基于组的访问控制），提高用户与权限灵活性
 ch09：自定义UserDetailsService，整合遗留系统的用户管理 http://www.jianshu.com/p/5b5f15425419<br>
 ch10：启用HTTPS加强传输通道安全性 --尚未研究 http://www.jianshu.com/p/981b90aa2ddf<br>
 ch11: 精确授权——页面级权限控制与方法级权限控制 http://www.jianshu.com/p/bb48a84ced05<br>
-ch12: 精确授权——方法级权限控制 <br>
-自定义filter
+ch12: 自定义Filter实现IP限制 http://www.jianshu.com/p/05f224747b1d<br>
 管理session
 显示活跃用户数
 处理异常
+事件
