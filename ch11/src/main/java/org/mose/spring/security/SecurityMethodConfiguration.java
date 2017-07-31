@@ -46,9 +46,4 @@ public class SecurityMethodConfiguration extends GlobalMethodSecurityConfigurati
         metadataSource.addSecureMethod(UserService.class, "javaConfiguredMethod", SecurityConfig.createList("ROLE_ADMIN"));
         return metadataSource;
     }
-
-    @Override
-    public MethodSecurityMetadataSource methodSecurityMetadataSource() {
-        return super.methodSecurityMetadataSource();
-    }
 }
