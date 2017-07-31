@@ -69,7 +69,7 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
                 .and().logout().permitAll()
                 //自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
                 .and().rememberMe().tokenRepository(persistentTokenRepository())
-                ///Spring Security的默认启用防止固化session攻击
+                //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
                 //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面
                 .maximumSessions(1).expiredUrl("/login.jsp").sessionRegistry(sessionRegistry).and()

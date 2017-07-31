@@ -6,9 +6,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring.security.ch11</artifactId>
+    <artifactId>spring.security.ch13</artifactId>
     <packaging>war</packaging>
-    <name>ch11</name>
+    <name>ch13</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -88,6 +88,6 @@
 
 
     <build>
-        <finalName>spring.security.ch11</finalName>
+        <finalName>spring.security.ch13</finalName>
     </build>
 </project>
