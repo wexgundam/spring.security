@@ -22,15 +22,16 @@ public class UserServiceController {
     @Autowired
     private SessionRegistry sessionRegistry;
 
-    @ModelAttribute("activeSessionCount")
-    public int activeSessionCount() {
-        return sessionRegistry.getAllPrincipals().size();
+    @RequestMapping("/users")
+    @ResponseBody
+    public String activeSessionCount() {
+        return "Current active session count is " + sessionRegistry.getAllPrincipals().size();
     }
 
     @RequestMapping("/user/annotation")
     @ResponseBody
     public String annotation() {
-        return userService.preAuthorizeMethod() + activeSessionCount();
+        return userService.preAuthorizeMethod();
     }
 
     @RequestMapping("/user/javaConfiguration")
