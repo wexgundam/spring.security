@@ -2,13 +2,12 @@ package org.mose.spring.security.controller;
 
 import org.mose.spring.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description:
@@ -20,11 +19,18 @@ import java.util.List;
 public class UserServiceController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SessionRegistry sessionRegistry;
+
+    @ModelAttribute("activeSessionCount")
+    public int activeSessionCount() {
+        return sessionRegistry.getAllPrincipals().size();
+    }
 
     @RequestMapping("/user/annotation")
     @ResponseBody
     public String annotation() {
-        return userService.preAuthorizeMethod();
+        return userService.preAuthorizeMethod() + activeSessionCount();
     }
 
     @RequestMapping("/user/javaConfiguration")

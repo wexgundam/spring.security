@@ -86,6 +86,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         You have been logged out.
                     </div>
                 </c:if>
+                <!-- the configured LogoutConfigurer#logoutSuccessUrl is /login?logout and contains the query param logout -->
+                <c:if test="${param.expired != null}">
+                    <div>
+                        Your session have been expired.
+                    </div>
+                </c:if>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
