@@ -50,6 +50,7 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
      *
      * @param http
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -59,11 +60,13 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/error").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
                 .and().logout().permitAll()
-                .and().rememberMe().tokenRepository(
-                persistentTokenRepository())//自动识别tokenRepository类型，启用PersistentTokenBasedRememberMeServices
+                //配置未授权处理地址
+                .and().exceptionHandling().accessDeniedPage("/accessDenied")
+                .and().rememberMe().tokenRepository(persistentTokenRepository())
                 .and().csrf().disable();
     }
 
@@ -72,6 +75,7 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
      *
      * @param auth
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
