@@ -12,4 +12,4 @@ ch10：启用HTTPS加强传输通道安全性 --尚未研究 http://www.jianshu.
 ch11: 精确授权——页面级权限控制与方法级权限控制 http://www.jianshu.com/p/bb48a84ced05<br>
 ch12: 自定义Filter实现IP限制 http://www.jianshu.com/p/05f224747b1d<br>
 ch13: 管理session，显示活跃用户数 http://www.jianshu.com/p/ca434df9991a<br>
-ch14: 异常处理与事件 <br>
+ch14: 异常处理与认证事件处理 <br>

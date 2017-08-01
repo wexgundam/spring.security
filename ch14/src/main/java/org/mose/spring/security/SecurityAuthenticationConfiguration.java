@@ -8,6 +8,8 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -82,9 +84,21 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
+                .authenticationEventPublisher(authenticationEventPublisher())//注入事件发布者
                 .jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())//启用密码加密功能
                 .dataSource(dataSource);
+    }
+
+    /**
+     * Description:认证事件发布器
+     *
+     * @Author: 靳磊
+     * @Date: 2017/8/1 16:55
+     */
+    @Bean
+    public AuthenticationEventPublisher authenticationEventPublisher() {
+        return new DefaultAuthenticationEventPublisher();
     }
 
     /**
